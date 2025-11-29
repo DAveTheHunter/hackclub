@@ -15,7 +15,10 @@
       align-items: center;
       min-height: 100vh;
       padding: 20px;
+      opacity: 0;
+      transition: opacity 1.2s ease-in-out;
     }
+    body.loaded { opacity: 1; }
 
     .container {
       background: rgba(255, 255, 255, 0.08);
@@ -27,31 +30,26 @@
       box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
       text-align: center;
     }
-
-    h1 {
-      font-size: 34px;
-      margin-bottom: 15px;
-      letter-spacing: 1px;
-    }
-
+    h1 { font-size: 34px; margin-bottom: 15px; letter-spacing: 1px; }
     p {
       font-size: 19px;
       line-height: 1.6;
       margin-bottom: 25px;
       color: #e6e6e6;
     }
-
+    .quote {
+      font-style: italic;
+      margin: 30px 0;
+      font-size: 18px;
+      color: #00c3ff;
+    }
     a {
       color: #00c3ff;
       font-size: 18px;
       text-decoration: underline;
       transition: color 0.2s ease;
     }
-
-    a:hover {
-      color: #7fe5ff;
-    }
-  </style>
+    a:hover { color: #7fe5ff; }  </style>
 </head>
 <body>
   <div class="container">
@@ -63,8 +61,45 @@
       CSS, and JavaScript.
     </p>
 
+    <div class="quote" id="randomQuote"></div>
+
+    <p>© <span id="year"></span> – All rights reserved.</p>
+
     <a href="index.html">← Back to Home</a>
   </div>
+        <script>
+        const quotes = [
+            "Simplicity is the ultimate sophistication. — Leonardo da Vinci",
+            "Good design is as little design as possible. — Dieter Rams",
+            "The best code is no code at all.",
+            "First make it work, then make it right, then make it fast.",
+            "Any sufficiently advanced technology is indistinguishable from magic. — Arthur C. Clarke",
+            "Perfection is achieved not when there is nothing more to add, but when there is nothing left to take away. — Antoine de Saint-Exupéry",
+            "Code is like humor. When you have to explain it, it’s bad. — Cory House",
+            "The function of good software is to make the complex appear simple. — Grady Booch"
+        ];
+
+        function showRandomQuote() {
+            const quoteElement = document.getElementById("randomQuote");
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            quoteElement.textContent = quotes[randomIndex];
+        }
+
+        function setCurrentYear() {
+            document.getElementById("year").textContent = new Date().getFullYear();
+        }
+
+        function fadeInPage() {
+            document.body.classList.add("loaded");
+        }
+
+        window.addEventListener("DOMContentLoaded", () => {
+            fadeInPage();
+            setCurrentYear();
+            showRandomQuote();
+        });
+
+        </script>
 </body>
 </html>
 

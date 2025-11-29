@@ -78,8 +78,9 @@
   </div>
 
   <script>
-    const songs = [
-      {title: "Ed Sheeran - Shape of You", url: "https://www.youtube.com/watch?v=JGwWNGJdvx8"},
+   function getSongs() {
+       return [
+             {title: "Ed Sheeran - Shape of You", url: "https://www.youtube.com/watch?v=JGwWNGJdvx8"},
       {title: "Justin Bieber - Sorry", url: "https://www.youtube.com/watch?v=fRh_vgS2dFE"},
       {title: "The Weeknd - Starboy", url: "https://www.youtube.com/watch?v=K5KAc5CoCuk"},
       {title: "Imagine Dragons - Radioactive", url: "https://www.youtube.com/watch?v=ktvTqknDobU"},
@@ -132,21 +133,34 @@
       {title: "Katy Perry - Dark Horse", url: "https://www.youtube.com/watch?v=CevxZvSJLk8"},
       {title: "Bruno Mars - Grenade", url: "https://www.youtube.com/watch?v=RBumgq5yVrA"},
       {title: "Shawn Mendes - Mercy", url: "https://www.youtube.com/watch?v=YykjpeuMNEk"},
-      {title: "Taylor Swift - Wildest Dreams", url: "https://www.youtube.com/watch?v=e-ORhEE9VVg"}
-    ];
+      {title: "Taylor Swift - Wildest Dreams", url: "https://www.youtube.com/watch?v=e-ORhEE9VVg"}]
+}
 
-    const ul = document.getElementById("song-list");
+   function createSongElement(song) {
+       const li = document.createElement("li");
+       const a = document.createElement("a");
 
-    songs.forEach(song => {
-      const li = document.createElement("li");
-      const a = document.createElement("a");
-      a.href = song.url;
-      a.target = "_blank";
-      a.textContent = song.title;
-      li.appendChild(a);
-      ul.appendChild(li);
-    });
-  </script>
+       a.href = song.url;
+       a.target = "_blank";
+       a.textContent = song.title;
+
+       li.appendChild(a);
+       return li;
+   }
+
+   function renderSongs() {
+       const ul = document.getElementById("song-list");
+       const songs = getSongs();
+
+       songs.forEach(song => {
+           const li = createSongElement(song);
+           ul.appendChild(li);
+       });
+   }
+
+   renderSongs()
+
+      </script>
 </body>
 </html>
 
