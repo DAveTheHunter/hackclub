@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Song List</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Poppins, Arial, sans-serif;
+      /* background: linear-gradient(135deg, #141e30, #243b55); */
+      background-image: url("./image.jpg");
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.08);
+      padding: 30px;
+      border-radius: 20px;
+      width: 100%;
+      max-width: 600px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 25px;
+      font-size: 32px;
+      letter-spacing: 1px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      background: rgba(255, 255, 255, 0.12);
+      padding: 15px 20px;
+      margin-bottom: 12px;
+      border-radius: 12px;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    li:hover {
+      transform: translateY(-3px);
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    a {
+      color: #00c3ff;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    .nav-link {
+      display: block;
+      margin-top: 25px;
+      text-align: center;
+      color: #ffd369;
+      font-size: 17px;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🔥 Song List</h1>
+    <ul id="song-list"></ul>
+    <a href="about.html" class="nav-link">Go to About Page →</a>
+  </div>
+
+  <script>
+    const songs = [
+      {title: "Ed Sheeran - Shape of You", url: "https://www.youtube.com/watch?v=JGwWNGJdvx8"},
+      {title: "Justin Bieber - Sorry", url: "https://www.youtube.com/watch?v=fRh_vgS2dFE"},
+      {title: "The Weeknd - Starboy", url: "https://www.youtube.com/watch?v=K5KAc5CoCuk"},
+      {title: "Imagine Dragons - Radioactive", url: "https://www.youtube.com/watch?v=ktvTqknDobU"},
+      {title: "Adele - Hello", url: "https://www.youtube.com/watch?v=YQHsXMglC9A"},
+      {title: "Mark Ronson ft. Bruno Mars - Uptown Funk", url: "https://www.youtube.com/watch?v=OPf0YbXqDm0"},
+      {title: "Sia - Chandelier", url: "https://www.youtube.com/watch?v=hT_nvWreIhg"},
+      {title: "Maroon 5 - Sugar", url: "https://www.youtube.com/watch?v=09R8_2nJtjg"},
+      {title: "Taylor Swift - Shake It Off", url: "https://www.youtube.com/watch?v=6Ejga4kJUts"},
+      {title: "Katy Perry - Roar", url: "https://www.youtube.com/watch?v=RBumgq5yVrA"},
+      {title: "Pharrell Williams - Happy", url: "https://www.youtube.com/watch?v=3tmd-ClpJxA"},
+      {title: "Shawn Mendes - Treat You Better", url: "https://www.youtube.com/watch?v=YykjpeuMNEk"},
+      {title: "Coldplay - Viva La Vida", url: "https://www.youtube.com/watch?v=2vjPBrBU-TM"},
+      {title: "Taylor Swift - Blank Space", url: "https://www.youtube.com/watch?v=e-ORhEE9VVg"},
+      {title: "OneRepublic - Counting Stars", url: "https://www.youtube.com/watch?v=LsoLEjrDogU"},
+      {title: "Luis Fonsi - Despacito", url: "https://www.youtube.com/watch?v=kJQP7kiw5Fk"},
+      {title: "Adele - Rolling in the Deep", url: "https://www.youtube.com/watch?v=0KSOMA3QBU0"},
+      {title: "Eminem ft. Rihanna - Love The Way You Lie", url: "https://www.youtube.com/watch?v=uelHwf8o7_U"},
+      {title: "Miley Cyrus - Wrecking Ball", url: "https://www.youtube.com/watch?v=lp-EO5I60KA"},
+      {title: "Ed Sheeran - Perfect", url: "https://www.youtube.com/watch?v=SlPhMPnQ58k"},
+      {title: "Maroon 5 - Memories", url: "https://www.youtube.com/watch?v=09R8_2nJtjg"},
+      {title: "Shawn Mendes - Stitches", url: "https://www.youtube.com/watch?v=09R8_2nJtjg"},
+      {title: "Charlie Puth - We Don't Talk Anymore", url: "https://www.youtube.com/watch?v=YykjpeuMNEk"},
+      {title: "Ariana Grande - No Tears Left to Cry", url: "https://www.youtube.com/watch?v=09R8_2nJtjg"},
+      {title: "Luis Fonsi ft. Daddy Yankee - Despacito (Remix)", url: "https://www.youtube.com/watch?v=kJQP7kiw5Fk"},
+      {title: "Katy Perry - Firework", url: "https://www.youtube.com/watch?v=CevxZvSJLk8"},
+      {title: "Bruno Mars - 24K Magic", url: "https://www.youtube.com/watch?v=RBumgq5yVrA"},
+      {title: "Coldplay - Demons", url: "https://www.youtube.com/watch?v=ktvTqknDobU"},
+      {title: "Miley Cyrus - Party in the U.S.A.", url: "https://www.youtube.com/watch?v=lp-EO5I60KA"},
+      {title: "Ed Sheeran - Thinking Out Loud", url: "https://www.youtube.com/watch?v=JGwWNGJdvx8"},
+      {title: "Pharrell Williams - Happy", url: "https://www.youtube.com/watch?v=3tmd-ClpJxA"},
+      {title: "Bruno Mars - Treasure", url: "https://www.youtube.com/watch?v=OPf0YbXqDm0"},
+      {title: "Imagine Dragons - Believer", url: "https://www.youtube.com/watch?v=ktvTqknDobU"},
+      {title: "Taylor Swift - Style", url: "https://www.youtube.com/watch?v=e-ORhEE9VVg"},
+      {title: "Maroon 5 - Girls Like You", url: "https://www.youtube.com/watch?v=09R8_2nJtjg"},
+      {title: "Bruno Mars - Just The Way You Are", url: "https://www.youtube.com/watch?v=09R8_2nJtjg"},
+      {title: "Coldplay - Paradise", url: "https://www.youtube.com/watch?v=2vjPBrBU-TM"},
+      {title: "Adele - Someone Like You", url: "https://www.youtube.com/watch?v=YQHsXMglC9A"},
+      {title: "Maroon 5 - Moves Like Jagger", url: "https://www.youtube.com/watch?v=09R8_2nJtjg"},
+      {title: "Katy Perry - Roar", url: "https://www.youtube.com/watch?v=RBumgq5yVrA"},
+      {title: "Sia - Cheap Thrills", url: "https://www.youtube.com/watch?v=hT_nvWreIhg"},
+      {title: "OneRepublic - Counting Stars", url: "https://www.youtube.com/watch?v=LsoLEjrDogU"},
+      {title: "Luis Fonsi ft. Daddy Yankee - Despacito (Remix)", url: "https://www.youtube.com/watch?v=kJQP7kiw5Fk"},
+      {title: "Coldplay - Hymn For The Weekend", url: "https://www.youtube.com/watch?v=2vjPBrBU-TM"},
+      {title: "Bruno Mars - When I Was Your Man", url: "https://www.youtube.com/watch?v=09R8_2nJtjg"},
+      {title: "Coldplay - A Sky Full of Stars", url: "https://www.youtube.com/watch?v=2vjPBrBU-TM"},
+      {title: "Ed Sheeran - Galway Girl", url: "https://www.youtube.com/watch?v=JGwWNGJdvx8"},
+      {title: "Pharrell Williams - Come Get It Bae", url: "https://www.youtube.com/watch?v=3tmd-ClpJxA"},
+      {title: "Luis Fonsi - Échame La Culpa", url: "https://www.youtube.com/watch?v=kJQP7kiw5Fk"},
+      {title: "Maroon 5 - One More Night", url: "https://www.youtube.com/watch?v=09R8_2nJtjg"},
+      {title: "Katy Perry - Dark Horse", url: "https://www.youtube.com/watch?v=CevxZvSJLk8"},
+      {title: "Bruno Mars - Grenade", url: "https://www.youtube.com/watch?v=RBumgq5yVrA"},
+      {title: "Shawn Mendes - Mercy", url: "https://www.youtube.com/watch?v=YykjpeuMNEk"},
+      {title: "Taylor Swift - Wildest Dreams", url: "https://www.youtube.com/watch?v=e-ORhEE9VVg"}
+    ];
+
+    const ul = document.getElementById("song-list");
+
+    songs.forEach(song => {
+      const li = document.createElement("li");
+      const a = document.createElement("a");
+      a.href = song.url;
+      a.target = "_blank";
+      a.textContent = song.title;
+      li.appendChild(a);
+      ul.appendChild(li);
+    });
+  </script>
+</body>
+</html>
+
